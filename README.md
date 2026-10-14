@@ -32,6 +32,19 @@ python3 tools/selfcheck.py http://localhost:8000 admin tu_clave     # revisa que
 Abre `http://SERVIDOR:8000`. La primera construcción tarda varios minutos (PyTorch CPU + YOLO). Los datos (`data/events`, `data/logs`) persisten en el servidor.
 Actualizar: `git pull && docker compose up -d --build`.
 
+## Configuración del `.env`
+
+| Para qué | Variables | ¿Obligatorio? |
+|---|---|---|
+| Modelo en la nube (sin esto corre en modo SIMULADO) | `MAAS_API_KEY` | Sí |
+| Acceso a la interfaz | `DEMO_USER`, `DEMO_PASS` (cambia la clave de ejemplo) | Sí |
+| Celulares o equipos que transmiten | `MTX_PUBLISH_PASS`, `MTX_READ_PASS` (solo letras, números, `_ . -`; ejemplo: `openssl rand -hex 12`) | Solo con `--profile publish`; sin ellas MediaMTX no arranca |
+| Video desde OBS (Escenario 2) | `INGEST_TOKEN` (igual al de la función), `OBS_ENDPOINT`, `OBS_BUCKETS`, `OBS_AK`, `OBS_SK` (o `OBS_USE_AGENCY=1`) | Solo si usas OBS |
+
+El resto tiene valores por defecto razonables; la lista completa está en `.env.example`.
+Después de editar el `.env`: `docker compose --profile publish up -d --force-recreate`.
+Puertos a abrir en el grupo de seguridad: `8000` (interfaz); `8554` y `1935` solo si hay celulares.
+
 ## Instalación sin Docker (Ubuntu)
 ```bash
 cp .env.example .env && nano .env
