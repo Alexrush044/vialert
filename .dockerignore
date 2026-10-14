@@ -1,0 +1,11 @@
+.git
+.env
+data
+events
+logs
+uploads
+__pycache__
+*.pyc
+*.pt
+!models/*.pt
+*.tar.gz

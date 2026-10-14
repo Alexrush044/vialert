@@ -1,0 +1,30 @@
+# Solo camaras IP / NVR (lo habitual):   docker compose up -d --build
+# Ademas celulares/equipos que TRANSMITEN al servidor (activa MediaMTX):   docker compose --profile publish up -d --build
+# Interfaz: http://SERVIDOR:8000
+services:
+  mediamtx:
+    profiles: ["publish"]          # opcional: solo si habra celulares/equipos que transmiten
+    build: ./docker/mediamtx
+    restart: unless-stopped
+    environment:
+      MTX_PUBLISH_USER: ${MTX_PUBLISH_USER:-cam}
+      MTX_PUBLISH_PASS: ${MTX_PUBLISH_PASS:-}
+      MTX_READ_USER: vialert
+      MTX_READ_PASS: ${MTX_READ_PASS:-}
+    ports:
+      - "8554:8554"   # RTSP
+      - "1935:1935"   # RTMP
+
+  vialert:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      MTX_READ_URL: rtsp://vialert:${MTX_READ_PASS:-x}@mediamtx:8554
+    ports:
+      - "${VIALERT_PORT:-8000}:8000"
+    volumes:
+      - ./data/events:/app/events     # bitacora por camara y por dia + cameras.json
+      - ./data/logs:/app/logs
+      - ./data/uploads:/app/uploads
+      - ./casos:/app/casos            # videos de los casos de prueba: copialos aqui sin reconstruir la imagen

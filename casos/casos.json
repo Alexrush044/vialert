@@ -1,0 +1,400 @@
+[
+  {
+    "id": "colision",
+    "title": "Colisión",
+    "file": "01_colision.mp4",
+    "expected": [
+      "COLLISION"
+    ],
+    "person_down": false,
+    "note": "Choque visible entre dos o más vehículos. Debe notarse en un solo frame.",
+    "title_en": "Collision",
+    "note_en": "Visible crash between two or more vehicles. It must be noticeable in a single frame."
+  },
+  {
+    "id": "perdida_control",
+    "title": "Pérdida de control",
+    "file": "02_perdida_control.mp4",
+    "expected": [
+      "VEHICLE_LOSS_OF_CONTROL"
+    ],
+    "person_down": false,
+    "note": "Vehículo derrapando o girando. Difícil con 1 frame cada 5 s; depende del frame de contexto.",
+    "title_en": "Loss of control",
+    "note_en": "Vehicle skidding or spinning. Hard with 1 frame every 5 s; depends on the context frame."
+  },
+  {
+    "id": "vehiculo_detenido",
+    "title": "Vehículo detenido",
+    "file": "03_vehiculo_detenido.mp4",
+    "expected": [
+      "STOPPED_VEHICLE"
+    ],
+    "person_down": false,
+    "note": "Vehículo parado en carril o acotamiento durante varios frames.",
+    "title_en": "Stopped vehicle",
+    "note_en": "Vehicle stopped in a lane or on the shoulder for several frames."
+  },
+  {
+    "id": "carril_obstruido",
+    "title": "Carril obstruido",
+    "file": "04_carril_obstruido.mp4",
+    "expected": [
+      "LANE_OBSTRUCTION"
+    ],
+    "person_down": false,
+    "note": "Carril bloqueado por obra, camión atravesado o un objeto grande.",
+    "title_en": "Lane obstruction",
+    "note_en": "Lane blocked by roadwork, a jackknifed truck or a large object."
+  },
+  {
+    "id": "objetos_en_via",
+    "title": "Objetos en la vía",
+    "file": "05_objetos_en_via.mp4",
+    "expected": [
+      "DEBRIS"
+    ],
+    "person_down": false,
+    "note": "Cajas, llantas o escombro sobre el pavimento.",
+    "title_en": "Debris on road",
+    "note_en": "Boxes, tires or rubble on the pavement."
+  },
+  {
+    "id": "congestion",
+    "title": "Congestión",
+    "file": "06_congestion.mp4",
+    "expected": [
+      "TRAFFIC_CONGESTION"
+    ],
+    "person_down": false,
+    "note": "Tráfico denso y lento.",
+    "title_en": "Congestion",
+    "note_en": "Dense, slow traffic."
+  },
+  {
+    "id": "maniobra_peligrosa",
+    "title": "Maniobra peligrosa",
+    "file": "07_maniobra_peligrosa.mp4",
+    "expected": [
+      "DANGEROUS_MANEUVER"
+    ],
+    "person_down": false,
+    "note": "Cambio brusco de carril, reversa o contraflujo. Difícil con 1 frame cada 5 s.",
+    "title_en": "Dangerous maneuver",
+    "note_en": "Abrupt lane change, reversing or wrong-way driving. Hard with 1 frame every 5 s."
+  },
+  {
+    "id": "fuego_humo",
+    "title": "Fuego / humo",
+    "file": "08_fuego_humo.mp4",
+    "expected": [
+      "FIRE_OR_SMOKE"
+    ],
+    "person_down": false,
+    "note": "Vehículo o vegetación en llamas o con humo.",
+    "title_en": "Fire / smoke",
+    "note_en": "Vehicle or vegetation on fire or smoking."
+  },
+  {
+    "id": "peaton_en_via",
+    "title": "Peatón en vía",
+    "file": "09_peaton_en_via.mp4",
+    "expected": [
+      "PEDESTRIAN_ON_ROAD"
+    ],
+    "person_down": false,
+    "note": "Persona caminando sobre la vía.",
+    "title_en": "Pedestrian on road",
+    "note_en": "Person walking on the roadway."
+  },
+  {
+    "id": "persona_caida",
+    "title": "Persona caída",
+    "file": "10_persona_caida.mp4",
+    "expected": [
+      "PEDESTRIAN_ON_ROAD"
+    ],
+    "person_down": true,
+    "note": "Persona tendida en la vía. Si el modelo marca además otro evento cuenta como parcial.",
+    "title_en": "Person down",
+    "note_en": "Person lying on the road. If the model also flags another event it counts as partial."
+  },
+  {
+    "id": "trafico_normal",
+    "title": "Tráfico normal (control)",
+    "file": "11_trafico_normal.mp4",
+    "expected": [
+      "NORMAL_TRAFFIC"
+    ],
+    "person_down": false,
+    "note": "Control negativo: no debe generar ninguna alerta. Mide los falsos positivos.",
+    "title_en": "Normal traffic (control)",
+    "note_en": "Negative control: must not raise any alert. Measures false positives."
+  },
+  {
+    "id": "choque_con_humo",
+    "title": "Choque con humo",
+    "file": "12_choque_con_humo.mp4",
+    "expected": [
+      "COLLISION",
+      "FIRE_OR_SMOKE"
+    ],
+    "person_down": false,
+    "note": "Dos eventos a la vez. Prueba que el modelo devuelva varios.",
+    "title_en": "Crash with smoke",
+    "note_en": "Two events at once. Tests that the model returns several."
+  },
+  {
+    "id": "asalto",
+    "title": "Asalto / robo",
+    "file": "13_asalto.mp4",
+    "expected": [
+      "ASSAULT_OR_ROBBERY"
+    ],
+    "person_down": false,
+    "note": "Persona sometida o despojada de pertenencias. Es el caso mas dificil: frames de 5 s captan poco; revisa los extra de YOLO.",
+    "title_en": "Assault / robbery",
+    "note_en": "Person overpowered or robbed of belongings. The hardest case: 5 s frames capture little; check the extra YOLO frames."
+  },
+  {
+    "id": "pelea",
+    "title": "Pelea / golpes",
+    "file": "14_pelea.mp4",
+    "expected": [
+      "FIGHT_OR_VIOLENCE"
+    ],
+    "person_down": false,
+    "note": "Personas golpeandose o forcejeando. Marcar ademas persona caida cuenta como parcial solo si el caso lo espera.",
+    "title_en": "Fight / violence",
+    "note_en": "People hitting each other or struggling. Also flagging person down only counts as partial if the case expects it."
+  },
+  {
+    "id": "manifestacion",
+    "title": "Manifestación / paro",
+    "file": "15_manifestacion.mp4",
+    "expected": [
+      "PROTEST_OR_BLOCKADE"
+    ],
+    "person_down": false,
+    "note": "Grupo con pancartas o bloqueando una via.",
+    "title_en": "Protest / blockade",
+    "note_en": "Group with banners or blocking a road."
+  },
+  {
+    "id": "aglomeracion",
+    "title": "Aglomeración (control)",
+    "file": "16_aglomeracion.mp4",
+    "expected": [
+      "CROWD_GATHERING"
+    ],
+    "person_down": false,
+    "note": "Mucha gente reunida SIN violencia: no debe marcarse como pelea ni asalto (mide falsos positivos).",
+    "title_en": "Crowd (control)",
+    "note_en": "Many people gathered WITHOUT violence: must not be flagged as fight or assault (measures false positives)."
+  },
+  {
+    "id": "arma",
+    "title": "Persona armada",
+    "file": "17_arma.mp4",
+    "expected": [
+      "RISK_BEHAVIOR"
+    ],
+    "person_down": false,
+    "note": "Persona con arma visible (usa material apto). Debe levantar la bandera armed_person.",
+    "flags": [
+      "armed_person"
+    ],
+    "title_en": "Armed person",
+    "note_en": "Person with a visible weapon (use suitable footage). Must raise the armed_person flag."
+  },
+  {
+    "id": "vandalismo",
+    "title": "Vandalismo / daño",
+    "file": "18_vandalismo.mp4",
+    "expected": [
+      "VANDALISM_OR_DAMAGE"
+    ],
+    "person_down": false,
+    "note": "Grafiti, rotura de vidrios o daño a vehículos.",
+    "title_en": "Vandalism / damage",
+    "note_en": "Graffiti, broken glass or damage to vehicles."
+  },
+  {
+    "id": "sin_casco",
+    "title": "Moto sin casco / 3 ocupantes",
+    "file": "19_sin_casco.mp4",
+    "expected": [
+      "RISK_BEHAVIOR"
+    ],
+    "person_down": false,
+    "note": "Motociclista sin casco o moto con 3 o más ocupantes.",
+    "flags": [
+      "no_helmet"
+    ],
+    "title_en": "Motorbike without helmet / 3 riders",
+    "note_en": "Motorcyclist without helmet or motorbike with 3 or more riders."
+  },
+  {
+    "id": "contraflujo",
+    "title": "Vehículo en contraflujo",
+    "file": "20_contraflujo.mp4",
+    "expected": [
+      "WRONG_WAY_VEHICLE"
+    ],
+    "person_down": false,
+    "note": "Un vehículo circula en sentido contrario al resto.",
+    "title_en": "Wrong-way vehicle",
+    "note_en": "A vehicle drives against the flow of the rest."
+  },
+  {
+    "id": "clima",
+    "title": "Niebla / inundación",
+    "file": "21_clima.mp4",
+    "expected": [
+      "LOW_VISIBILITY_OR_FLOOD"
+    ],
+    "person_down": false,
+    "note": "Niebla densa, lluvia fuerte o encharcamiento.",
+    "title_en": "Fog / flood",
+    "note_en": "Dense fog, heavy rain or standing water."
+  },
+  {
+    "id": "camara_tapada",
+    "title": "Cámara tapada / desenfocada",
+    "file": "22_camara_tapada.mp4",
+    "expected": [
+      "CAMERA_OBSTRUCTED"
+    ],
+    "person_down": false,
+    "note": "Lente tapado, sucio o desenfocado. La analítica local también lo registra (cam:*).",
+    "analytics": [
+      "cam:*"
+    ],
+    "title_en": "Camera blocked / out of focus",
+    "note_en": "Lens covered, dirty or out of focus. Local analytics also logs it (cam:*)."
+  },
+  {
+    "id": "atropellamiento",
+    "title": "Atropellamiento",
+    "file": "23_atropellamiento.mp4",
+    "expected": [
+      "PEDESTRIAN_STRUCK"
+    ],
+    "person_down": false,
+    "note": "Vehículo golpea a una persona. Si el modelo dice COLLISION cuenta como fallo.",
+    "title_en": "Pedestrian struck",
+    "note_en": "Vehicle hits a person. If the model says COLLISION it counts as a failure."
+  },
+  {
+    "id": "merodeo",
+    "title": "Merodeo (analítica)",
+    "file": "24_merodeo.mp4",
+    "expected": [
+      "NORMAL_TRAFFIC"
+    ],
+    "person_down": false,
+    "note": "Persona quieta ≥20 s en el mismo lugar. No es clase del modelo: se valida en el panel de Analítica (yolo:merodeo).",
+    "analytics": [
+      "yolo:merodeo"
+    ],
+    "title_en": "Loitering (analytics)",
+    "note_en": "Person standing still ≥20 s in the same place. Not a model class: validated in the Analytics panel (yolo:merodeo)."
+  },
+  {
+    "id": "objeto_abandonado",
+    "title": "Objeto abandonado",
+    "file": "25_objeto_abandonado.mp4",
+    "expected": [
+      "ABANDONED_OBJECT"
+    ],
+    "person_down": false,
+    "note": "Mochila o bulto sin persona cerca ≥15 s. Se valida también en Analítica (yolo:objeto_abandonado).",
+    "analytics": [
+      "yolo:objeto_abandonado"
+    ],
+    "title_en": "Abandoned object",
+    "note_en": "Backpack or package with no person nearby ≥15 s. Also validated in Analytics (yolo:objeto_abandonado)."
+  },
+  {
+    "id": "zona_restringida",
+    "title": "Zona restringida (analítica)",
+    "file": "26_zona_restringida.mp4",
+    "expected": [
+      "NORMAL_TRAFFIC"
+    ],
+    "person_down": false,
+    "note": "Alguien entra al polígono marcado. Dibuja la zona en el video (o ajústala en casos.json → zones.restricted).",
+    "zones": {
+      "restricted": [
+        [
+          0.55,
+          0.45
+        ],
+        [
+          1,
+          0.45
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0.55,
+          1
+        ]
+      ]
+    },
+    "analytics": [
+      "yolo:intrusion"
+    ],
+    "title_en": "Restricted zone (analytics)",
+    "note_en": "Someone enters the marked polygon. Draw the zone on the video (or adjust it in casos.json → zones.restricted)."
+  },
+  {
+    "id": "estacionado_prohibido",
+    "title": "Estacionado en zona prohibida",
+    "file": "27_estacionado.mp4",
+    "expected": [
+      "ILLEGAL_PARKING"
+    ],
+    "person_down": false,
+    "note": "Vehículo detenido ≥8 s en la zona de no estacionar (zones.no_parking).",
+    "zones": {
+      "no_parking": [
+        [
+          0,
+          0.5
+        ],
+        [
+          0.45,
+          0.5
+        ],
+        [
+          0.45,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    "analytics": [
+      "yolo:estacionado_prohibido"
+    ],
+    "title_en": "Parked in no-parking zone",
+    "note_en": "Vehicle stopped ≥8 s in the no-parking zone (zones.no_parking)."
+  },
+  {
+    "id": "flujo",
+    "title": "Conteo y flujo (analítica)",
+    "file": "28_flujo.mp4",
+    "expected": [
+      "NORMAL_TRAFFIC"
+    ],
+    "person_down": false,
+    "note": "Tráfico continuo: revisa el panel Flujo (vehículos/min, ocupación, tendencia).",
+    "title_en": "Counting and flow (analytics)",
+    "note_en": "Continuous traffic: check the Flow panel (vehicles/min, occupancy, trend)."
+  }
+]

@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+httpx
+opencv-python-headless
+python-multipart
+numpy
+pycryptodome
+crcmod-plus
+segno>=1.6

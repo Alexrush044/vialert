@@ -1,0 +1,12 @@
+# Escenario 2: video → OBS → FunctionGraph → ECS (YOLO) → MaaS → resultado en OBS
+
+Interfaz: modo **OBS** = cola de videos (hora de llegada, estado, % de avance, incidentes, informe, Reintentar). Ya **no hace falta tener la página abierta**: el servidor analiza solo.
+
+**Varios archivos a la vez o en cadena.** Cada aviso de FunctionGraph se registra al instante en el libro `events/_ingest.json` (se conserva tras reinicios) y entra a una cola; `INGEST_WORKERS` (1 por defecto) videos se analizan a la vez, a `INGEST_SPEED` (20×, no en tiempo real). Si Vialert se reinicia a la mitad, los pendientes vuelven a la cola (hasta 3 intentos). Un aviso repetido del mismo objeto no se reprocesa mientras siga en proceso ni durante 10 min; un objeto con error se puede reintentar desde la interfaz o con `POST /api/ingest/<id>/retry`. Todo lo detectado queda en **Registros** con la fuente `bucket/clave.mp4`, la hora de pared y el segundo dentro del video.
+Para comprobar que no se perdió ninguno: `GET /api/ingest/list` (contadores `queued/downloading/analyzing/done/error`) o `tools/selfcheck.py`.
+1. `.env` de la ECS: `INGEST_TOKEN` (openssl rand -hex 16), `OBS_ENDPOINT` (el de la región del bucket, p. ej. `https://obs.la-north-2.myhuaweicloud.com`), `OBS_AK`, `OBS_SK` (usuario IAM con permiso de lectura y escritura en ese bucket), opcional `OBS_BUCKETS`. Luego `pip install -r requirements.txt` (o `./run.sh`; el SDK de OBS va incluido en la carpeta `obs/`) y reiniciar.
+2. FunctionGraph: función de eventos, Python 3.x, handler `index.handler`, código `functiongraph/index.py`. Variables de entorno `INGEST_URL=http://IP:8000/api/ingest` e `INGEST_TOKEN` (igual que en la ECS). Timeout de ejecución 30 s.
+3. Disparador OBS en la función: bucket, eventos de creación de objetos (Put/Post/Copy/Complete multipart), prefijo de los videos y sufijo `.mp4`.
+4. La función solo avisa (`POST /api/ingest` con `X-Vialert-Token`, responde 202). La ECS descarga, analiza y escribe `OBS_OUT_PREFIX<key>/report.json` y `evidence_*.jpg` en el mismo bucket. Un mismo objeto no se reprocesa durante 10 min; los objetos bajo `OBS_OUT_PREFIX` se ignoran (evita bucles).
+Alternativa a `OBS_AK`/`OBS_SK`: asigna a la ECS una agencia de IAM con permisos de OBS y pon `OBS_USE_AGENCY=1` (el SDK toma credenciales temporales de los metadatos de la ECS). Código verificado contra `huaweicloud-sdk-python-obs` (`ObsClient(server=...)`, `getObject(downloadPath=)`, `putContent`, `putFile`).
+

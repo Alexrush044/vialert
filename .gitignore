@@ -1,0 +1,13 @@
+# secretos y datos de ejecucion: NUNCA al repositorio
+.env
+data/
+events/
+logs/
+uploads/
+__pycache__/
+*.pyc
+.venv/
+*.pt
+!models/*.pt         # pesos de YOLO que vienen en el repo (AGPL-3.0, ver NOTICE.md)
+*.tar.gz
+*.log
