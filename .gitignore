@@ -1,4 +1,4 @@
-# secretos y datos de ejecucion: NUNCA al repositorio
+﻿# secretos y datos de ejecucion: NUNCA al repositorio
 .env
 data/
 events/
@@ -8,6 +8,7 @@ __pycache__/
 *.pyc
 .venv/
 *.pt
-!models/*.pt         # pesos de YOLO que vienen en el repo (AGPL-3.0, ver NOTICE.md)
+# pesos de YOLO que vienen en el repo (AGPL-3.0, ver NOTICE.md)
+!models/*.pt
 *.tar.gz
 *.log
