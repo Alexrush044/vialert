@@ -105,3 +105,7 @@ Un video que cae en un bucket dispara una función que avisa a Vialert; este lo 
 - [`docs/ANALISIS.md`](docs/ANALISIS.md): cómo analiza (muestreo híbrido, YOLO, eventos, zonas, logs, ajustes).
 - [`docs/ESCENARIO2_OBS.md`](docs/ESCENARIO2_OBS.md): video → OBS → FunctionGraph → Vialert.
 - [`.env.example`](.env.example): todas las variables comentadas. [`NOTICE.md`](NOTICE.md): licencias de terceros. [`CHANGELOG.md`](CHANGELOG.md).
+
+## Licencia
+
+AGPL-3.0, ver [LICENSE](LICENSE). Los pesos de YOLO y otras piezas de terceros tienen sus propias licencias: ver [NOTICE.md](NOTICE.md).
