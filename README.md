@@ -22,7 +22,7 @@ Cada cámara guarda su bitácora por día y se consulta desde la propia interfaz
 
 ## Instalación con Docker (recomendada)
 ```bash
-git clone <este-repositorio> vialert && cd vialert
+git clone https://github.com/Alexrush044/vialert.git vialert && cd vialert
 cp .env.example .env
 nano .env        # MAAS_API_KEY, DEMO_USER / DEMO_PASS
 docker compose up -d --build                      # cámaras IP / NVR
